@@ -114,7 +114,6 @@ public class WiGLEApiManager {
         this.context = context;
         //authed connection to WiGLE
         this.authedClient = hasAuthed(prefs) ? new OkHttpClient.Builder()
-                .addNetworkInterceptor(certTransparencyInterceptor)
                 .addInterceptor(new BasicAuthInterceptor(prefs))
                 .addInterceptor(new Interceptor() {
                     @NotNull
@@ -132,7 +131,6 @@ public class WiGLEApiManager {
                 .readTimeout(READ_TIMEOUT_S, TimeUnit.SECONDS).build():null;
         //un-authed connection to WiGLE
         this.unauthedClient = new OkHttpClient.Builder()
-                .addNetworkInterceptor(certTransparencyInterceptor)
                 .addInterceptor(new Interceptor() {
                     @NotNull
                     @Override
